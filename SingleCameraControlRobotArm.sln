@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DCFA9B
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calibration", "Calibration\Calibration.vcxproj", "{03779367-7212-4DD3-98CA-A5B9979207A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -22,6 +24,10 @@ Global
 		{EF887060-AE12-45C5-A24F-0590A155AE43}.Debug|Win32.Build.0 = Debug|Win32
 		{EF887060-AE12-45C5-A24F-0590A155AE43}.Release|Win32.ActiveCfg = Release|Win32
 		{EF887060-AE12-45C5-A24F-0590A155AE43}.Release|Win32.Build.0 = Release|Win32
+		{03779367-7212-4DD3-98CA-A5B9979207A6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{03779367-7212-4DD3-98CA-A5B9979207A6}.Debug|Win32.Build.0 = Debug|Win32
+		{03779367-7212-4DD3-98CA-A5B9979207A6}.Release|Win32.ActiveCfg = Release|Win32
+		{03779367-7212-4DD3-98CA-A5B9979207A6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

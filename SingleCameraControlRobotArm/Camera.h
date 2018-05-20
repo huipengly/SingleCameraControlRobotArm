@@ -5,8 +5,7 @@
 #include <conio.h>
 #include <iostream>
 #include <memory>
-#include"tisudshl.h"
-//#include "IC Imaging Control\samples\vc10\Common\cmdhelper.h"
+#include "tisudshl.h"
 
 using namespace _DSHOWLIB_NAMESPACE;
 
@@ -19,8 +18,3 @@ void CloseCamera();
 bool GetImageBuffer(MemBufferCollection::tMemBufferPtr *buffer);
 
 bool openDeviceFromFile(_DSHOWLIB_NAMESPACE::Grabber& gr, const std::string& devStateFilename);
-
-
-
-
-
