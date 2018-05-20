@@ -1,33 +1,15 @@
 #include <iostream>
-#include"GetImage.h"
-#include"Calibration.h"
-#include"kinematics.h"
-#include"EyeToHand.h"
-#include "TcAdsDef.h"
-#include "TcAdsAPI.h"
+#include "GetImage.h"
+#include "Calibration.h"
+#include "kinematics.h"
+#include "EyeToHand.h"
+#include "ads.h"
 
 /*
   经典经验：
   1、检查语句错误，将断点放置在本句。（检查内存溢出、程序崩溃的错误）
   2、检查语句运行结果，将断点放置在本句的下一句。（逻辑错误）
 */
-
-long      nErr, nPort;	//定义端口变量
-AmsAddr   Addr;			//定义AMS地址变量
-
-int Connect()
-{
-	nPort = AdsPortOpen();//打开ADS通讯端口
-	if (nPort == 0)
-	{
-		return -1;
-	}
-	AmsNetId AmsId = { 5, 39, 221, 128, 1, 1 };
-	Addr.netId = AmsId;
-	Addr.port = 0x8888;
-
-	return 0;
-}
 
 using namespace cv;
 using namespace std;

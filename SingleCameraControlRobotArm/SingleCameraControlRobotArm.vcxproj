@@ -90,6 +90,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ads.cpp" />
     <ClCompile Include="Calibration.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="EyeToHand.cpp" />
@@ -98,6 +99,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ads.h" />
     <ClInclude Include="Calibration.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="EyeToHand.h" />
