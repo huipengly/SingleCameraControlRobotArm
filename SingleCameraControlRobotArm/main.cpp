@@ -1,9 +1,8 @@
 #include <iostream>
-#include "GetImage.h"
-#include "Calibration.h"
-#include "kinematics.h"
-#include "EyeToHand.h"
-#include "ads.h"
+#include"GetImage.h"
+#include"Calibration.h"
+#include"kinematics.h"
+#include"EyeToHand.h"
 
 /*
   经典经验：
@@ -11,6 +10,14 @@
   2、检查语句运行结果，将断点放置在本句的下一句。（逻辑错误）
 */
 
+/*
+ （小师弟代码修改）
+  1、运动学程序改正
+  2、关节空间PTP：三次多项式、double s
+  3、笛卡尔空间：直线、圆弧（double s)
+  4、认真向小师弟学习利用GitHub，学会使用git
+  5、加上TCP（工具坐标系）
+*/
 using namespace cv;
 using namespace std;
 
@@ -20,16 +27,12 @@ int main()
 	Mat cameraMatrix, distCoeffs;
 
 	double Ajoint[3];
-
-
-	//EyeToHand(rview, rview);
-	//getchar();
-	//return 0;
 	
 	InitGetImages();
 
 	while (1)
 	{
+		
 		static DShowLib::Grabber::tMemBufferPtr pLeft;
 		static DShowLib::Grabber::tMemBufferPtr pRight;
 		Mat leftGray, rightGray;
@@ -51,12 +54,14 @@ int main()
 		cout << "  高  " << center.x << " 宽   " << center.y << endl;
 
 		Mat hand;
-		Mat eye = (Mat_<double>(1, 3) << center.x, center.y, 282.1969697);//定义一个1行3列的矩阵。但是在调试的时候看到的矩阵信息是1*3*1。Mat这个类型显示是?*列*行
+		Mat eye = (Mat_<double>(1, 3) << center.x, center.y, 196.97);//定义一个1行3列的矩阵。但是在调试的时候看到的矩阵信息是1*3*1。Mat这个类型显示是?*列*行
 		
 		EyeToHand(eye, hand);
+		
+		cout << hand.at<double>(0, 0) << " " <<hand.at<double>(0, 1) << endl;
 
-		kinematics_inverse(hand.at<double>(0, 0), hand.at<double>(0, 1), 0, Ajoint);   //x,y,z
-		cout << Ajoint[0] << "," << Ajoint[1] << endl;
+		//kinematics_inverse(hand.at<double>(0, 0), hand.at<double>(0, 1), 0, Ajoint);   //x,y,z
+		//cout << Ajoint[0] << "," << Ajoint[1] << endl;
 
 	}
 	return 0;

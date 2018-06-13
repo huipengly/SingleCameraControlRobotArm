@@ -155,7 +155,7 @@ void AffInMoment(Mat & image, vector<Point2d> & extrMarks, Point2d & center)
 			if (box.size.width>10 && box.size.height>10)
 			{
 				//Point2d center;
-				center.x = int(box.center.x);		//图像缩放
+				center.x = int(box.center.x);		//图像缩放（取整）
 				center.y = int(box.center.y);
 				//cout << "  高  " << center.x << " 宽   " << center.y << endl;
 				cout << "Find the center." << endl; //判断是否找圆心
