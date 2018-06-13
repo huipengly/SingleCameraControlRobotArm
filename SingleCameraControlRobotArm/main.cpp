@@ -3,6 +3,9 @@
 #include"Calibration.h"
 #include"kinematics.h"
 #include"EyeToHand.h"
+#include <windows.h>
+#include "C:\TwinCAT\ADSApi\TcAdsDll\Include\TcAdsDef.h" //结构体和常量的声明
+#include "C:\TwinCAT\ADSApi\TcAdsDll\Include\TcAdsAPI.h" // ADS函数的声明
 
 /*
   经典经验：
@@ -21,13 +24,46 @@
 using namespace cv;
 using namespace std;
 
+long nErr, nPort;				//定义端口变量
+AmsAddr Addr;			//定义AMS地址变量
+
+struct CartesianCoordinates
+{
+	double x;
+	double y;
+	double z;
+	double a;		//绕z轴旋转角度
+	double b;		//绕y轴
+	double c;		//绕x轴
+};
+
+int Connect()
+{
+	nPort = AdsPortOpen();//打开ADS通讯端口
+	if (nPort == 0)
+	{
+		return -1;
+	}
+	AmsNetId AmsId = { 5, 39, 221, 128, 1, 1 };
+	Addr.netId = AmsId;
+	Addr.port = 0x8888;
+
+	return 0;
+}
+
 int main()
 {
 	Mat rview, map1, map2;
 	Mat cameraMatrix, distCoeffs;
+	CartesianCoordinates target_cartesian;
 
 	double Ajoint[3];
 	
+	if (!Connect())
+	{
+		cout << "Connect success!" << endl;
+	};
+
 	InitGetImages();
 
 	while (1)
@@ -62,6 +98,9 @@ int main()
 
 		//kinematics_inverse(hand.at<double>(0, 0), hand.at<double>(0, 1), 0, Ajoint);   //x,y,z
 		//cout << Ajoint[0] << "," << Ajoint[1] << endl;
+		target_cartesian.x = hand.at<double>(0, 0);
+		target_cartesian.y = hand.at<double>(0, 1);
+		AdsSyncReadWriteReq(&Addr, 0x02, 0x01, 0, NULL, sizeof(CartesianCoordinates), &target_cartesian);
 
 	}
 	return 0;
