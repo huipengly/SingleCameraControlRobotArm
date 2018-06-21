@@ -57,7 +57,7 @@ int main()
 	Mat cameraMatrix, distCoeffs;
 	CartesianCoordinates target_cartesian;
 
-	double Ajoint[3];
+	//double Ajoint[3];
 	
 	if (!Connect())
 	{
