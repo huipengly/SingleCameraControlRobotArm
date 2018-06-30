@@ -82,7 +82,7 @@ int main()
 
 		remap(rightGray, rview, map1, map2, INTER_LINEAR);	//矫正之后图片尺寸和原图一样
 
-		cv::imwrite("output.bmp", rview);
+//		cv::imwrite("output.bmp", rview);
 	
 		Point2d center;
 		AffInMoment(rview, rightExtrMarks, center);
@@ -99,7 +99,7 @@ int main()
 		//kinematics_inverse(hand.at<double>(0, 0), hand.at<double>(0, 1), 0, Ajoint);   //x,y,z
 		//cout << Ajoint[0] << "," << Ajoint[1] << endl;
 		target_cartesian.x = hand.at<double>(0, 0);
-		target_cartesian.y = hand.at<double>(0, 1);
+		target_cartesian.y = hand.at<double>(0, 1) - 10;
 		AdsSyncReadWriteReq(&Addr, 0x02, 0x01, 0, NULL, sizeof(CartesianCoordinates), &target_cartesian);
 
 	}
