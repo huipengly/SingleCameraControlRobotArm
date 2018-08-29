@@ -94,13 +94,21 @@ int main()
 		
 		EyeToHand(eye, hand);
 		
-		cout << hand.at<double>(0, 0) << " " <<hand.at<double>(0, 1) << endl;
+		double add_x = 0, add_y = 0;
+		
+		if (hand.at<double>(0, 1) > 500)
+		{
+			add_x = 20;
+			add_y = 20;
+		}
+
+		cout << hand.at<double>(0, 0) + add_x << " " <<hand.at<double>(0, 1) + add_y << endl;
 
 		//kinematics_inverse(hand.at<double>(0, 0), hand.at<double>(0, 1), 0, Ajoint);   //x,y,z
 		//cout << Ajoint[0] << "," << Ajoint[1] << endl;
-		target_cartesian.x = hand.at<double>(0, 0);
-		target_cartesian.y = hand.at<double>(0, 1) - 10;
-		AdsSyncReadWriteReq(&Addr, 0x02, 0x01, 0, NULL, sizeof(CartesianCoordinates), &target_cartesian);
+		target_cartesian.x = hand.at<double>(0, 0) + add_x;
+		target_cartesian.y = hand.at<double>(0, 1) + add_y;
+		//AdsSyncReadWriteReq(&Addr, 0x02, 0x01, 0, NULL, sizeof(CartesianCoordinates), &target_cartesian);
 
 	}
 	return 0;
