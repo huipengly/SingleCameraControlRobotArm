@@ -6,6 +6,8 @@
 #include <windows.h>
 #include "C:\TwinCAT\ADSApi\TcAdsDll\Include\TcAdsDef.h" //结构体和常量的声明
 #include "C:\TwinCAT\ADSApi\TcAdsDll\Include\TcAdsAPI.h" // ADS函数的声明
+#include <string>
+using std::string;
 
 /*
   经典经验：
@@ -101,14 +103,30 @@ int main()
 			add_x = 20;
 			add_y = 20;
 		}
+		//else if (hand.at<double>(0, 0) > 80)
+		//{
+		//	add_x = 20;
+		//	add_y = -20;
+		//}
 
+		cout << "\nsend data is " << endl;
 		cout << hand.at<double>(0, 0) + add_x << " " <<hand.at<double>(0, 1) + add_y << endl;
+		cout << "send?? : ";
 
 		//kinematics_inverse(hand.at<double>(0, 0), hand.at<double>(0, 1), 0, Ajoint);   //x,y,z
 		//cout << Ajoint[0] << "," << Ajoint[1] << endl;
-		target_cartesian.x = hand.at<double>(0, 0) + add_x;
-		target_cartesian.y = hand.at<double>(0, 1) + add_y;
-		//AdsSyncReadWriteReq(&Addr, 0x02, 0x01, 0, NULL, sizeof(CartesianCoordinates), &target_cartesian);
+		
+		////string str;
+		////cin >> str;
+		char c;
+		c = getchar();
+		if (c == 'y')
+		{
+			cout << "send data" << endl;
+			target_cartesian.x = hand.at<double>(0, 0) + add_x;
+			target_cartesian.y = hand.at<double>(0, 1) + add_y;
+			AdsSyncReadWriteReq(&Addr, 0x02, 0x01, 0, NULL, sizeof(CartesianCoordinates), &target_cartesian);
+		}
 
 	}
 	return 0;
